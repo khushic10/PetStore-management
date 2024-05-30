@@ -1,0 +1,57 @@
+﻿@model Project.Models.PetModel
+
+@{
+    ViewData["Title"] = "AddPet";
+}
+
+<div class="Inner-page"><h1>Add Pet Details</h1></div>
+
+<hr />
+<div class="pet-back">
+    <a asp-action="Index">Back to List</a>
+</div>
+<div class="pet-addDetails">
+    <div class="">
+        <form asp-action="AddPet" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" class="form-control" />
+            <div class="form-group">
+                <label asp-for="PetName" class="control-label"></label>
+                <input asp-for="PetName" class="form-control" />
+                <span asp-validation-for="PetName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetDescription" class="control-label"></label>
+                <input asp-for="PetDescription" class="form-control" />
+                <span asp-validation-for="PetDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetType" class="control-label"></label>
+                <input asp-for="PetType" class="form-control" />
+                <span asp-validation-for="PetType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetBreed" class="control-label"></label>
+                <input asp-for="PetBreed" class="form-control" />
+                <span asp-validation-for="PetBreed" class="text-danger"></span>
+            </div>
+            <div >
+                <label asp-for="PetCost" class="control-label"></label>
+                <input asp-for="PetCost" class="form-control" />
+                <span asp-validation-for="PetCost" class="text-danger"></span>
+            </div>
+            <div >
+                <label asp-for="PetImage" class="control-label"></label>
+                <input type="file" asp-for="PetImage" class="form-control" />
+                <span asp-validation-for="PetImage" class="text-danger"></span>
+            </div>
+            <div class="pet-create">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

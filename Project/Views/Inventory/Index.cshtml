@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Project.Models.InventoryModel>
+
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<div class="Inner-page">
+    <h1>Inventory Details</h1>
+</div>
+<hr/>
+<div class="Add-pet">
+    <a asp-action="AddProduct">Add Product</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                <img src="data:image;base64,@(Convert.ToBase64String(item.ProductImage))" alt="Pet Image" width="100" height="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                    <form asp-action="EditProduct" method="post" class="product-edit">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <label class="control-label">Quantity</label>
+                        <input type="number" name="quantity" value="@item.Quantity" />
+                        <div><button type="submit">Edit</button></div>
+                    </form>
+            </td>
+            <td>
+                <div class="pet-delete">@Html.ActionLink("Delete", "DeleteProduct", new {Id = item.Id })</div>
+            </td>
+        </tr>
+}
+    </tbody>
+    
+</table>

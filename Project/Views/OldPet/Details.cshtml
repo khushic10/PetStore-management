@@ -1,0 +1,63 @@
+﻿@model Project.Models.PetModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="Inner-page"><h1>Details</h1></div>
+
+<div>
+    <hr />
+    <div class="pet-back"><a asp-action="Index">Back to List</a></div>
+    <div class="details">
+        <div class="details-image">
+            <img src="data:image;base64,@(Convert.ToBase64String(Model.PetImage))" alt="Pet Image" class="img-fluid" />
+        </div>
+        <div class="details-inner">
+            <div class="col-sm-2">
+                <strong>Id:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+            </div>
+            <div class="col-sm-2">
+                <strong>PetName:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.PetName)
+            </div>
+            <div class="col-sm-2">
+                <strong>PetDescription:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.PetDescription)
+            </div>
+            <div class="col-sm-2">
+                <strong>PetType:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.PetType)
+            </div>
+            <div class="col-sm-2">
+                <strong>PetBreed:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.PetBreed)
+            </div>
+            <div class="col-sm-2">
+                <strong>PetCost:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.PetCost)
+            </div>
+            <div class="col-sm-2">
+                <strong>PetStatus:</strong>
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.PetStatus)
+            </div>
+            <div class="pet-delete">@Html.ActionLink("Delete", "DeletePet", new { Id = Model.Id })</div>
+        </div>
+    </div>
+</div>
+

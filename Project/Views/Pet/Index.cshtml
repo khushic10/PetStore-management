@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Project.Models.PetModel>
+
+@{
+    ViewData["Title"] = "List Of Pets";
+}
+
+<div class="Inner-page">
+    <h1>Our Available Pets</h1>
+</div>
+<div class="Add-pet">
+    <a asp-action="AddPet">Add New Pet</a>
+</div>
+<div class="pets-list">
+@foreach (var item in Model) {
+        <div class="pets-list-inner">
+            <div class="pet-list-image">
+                @if (item.PetImage != null && item.PetImage.Length > 0)
+                {
+                    <img src="data:image;base64,@(Convert.ToBase64String(item.PetImage))" alt="Pet Image" width="100" height="100" />
+                }
+                else
+                {
+                    <span>No Image</span>
+                }
+            </div>
+            <div class="pet-list-details">
+                <div class="pet-status">
+                    Status: @Html.DisplayFor(modelItem => item.PetStatus)
+                </div>
+                <div class="pet-name">
+                    @Html.DisplayFor(modelItem => item.PetName)
+                </div>
+                <div class="pet-type">
+                    @Html.DisplayFor(modelItem => item.PetType)
+                </div>
+                <div class="pet-cost">
+                    Price: $@Html.DisplayFor(modelItem => item.PetCost)
+                </div>
+                
+                
+                    <div class="pet-details"> @Html.ActionLink("Details", "Details", new { Id = item.Id }) </div>
+            </div>
+        </div>
+}
+    </div>
